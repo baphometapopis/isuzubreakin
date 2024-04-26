@@ -1,0 +1,34 @@
+
+1.)Provide IC Image to the following Endpoints:
+  a.)Endpoint: https://demo.mypolicynow.com/api/api/fetch_breaking_pending_data
+  b.)Endpoint: https://demo.mypolicynow.com/api/api/fetch_breaking_progress_data
+  c.)Endpoint: https://demo.mypolicynow.com/api/api/fetch_breaking_referback_data
+  d.)Endpoint: https://demo.mypolicynow.com/api/api/fetch_breaking_pending_pos_data_details
+
+2.)some sample image url have null values  
+    a.)Endpoint: https://demo.mypolicynow.com/api/api/fetch_inspection_question
+    {
+            "id": "20",
+            "name": "Front Left Image",
+            "is_mand": "1",
+            "sample_image_url": ""
+        },
+
+
+
+3.)Proposal Status Codes:
+    i want an stage/steps code  to know the user is currently in which stage so that i can redirect them to the particular screen 
+Use the following status codes in the proposal to identify the stage:
+{ "stage":  0} for not uploaded /started yet 
+{ "stage": 1 } for Inspection Checkpoint
+{ "stage": 2 } for Image Upload
+{ "stage": 3 } for Video Upload
+{ "stage": 4 } for Successfully Submitted
+{ "stage": 5,} for refer back add new flag {"referBackComment": "Admin comment goes here" } for Refer Back
+{ "stage": 6, "isCancelled": true } for Cancelled breakin 
+
+
+
+4.)Retrieve previous data for refer back.
+    a.)Admin comment is included to provide reasons.
+    b.)Proposal status code is used to identify which data should be reuploaded.along with previous data 
