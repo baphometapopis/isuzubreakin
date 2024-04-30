@@ -50,9 +50,21 @@ const VideoRecorder = ({route}) => {
       setTimer(90); // Reset the timer after recording
 
       // Navigate to the video preview screen with the video URI
-      navigate.navigate('VideoPreview', {
-        videoUri: data.uri,
-        proposalInfo: proposalInfo,
+      // navigate.navigate('VideoPreview', {
+      //   videoUri: data.uri,
+      //   proposalInfo: proposalInfo,
+      // });
+      navigate.reset({
+        index: 0,
+        routes: [
+          {
+            name: 'VideoPreview',
+            params: {
+              videoUri: data.uri,
+              proposalInfo: proposalInfo,
+            },
+          },
+        ],
       });
     }
   };

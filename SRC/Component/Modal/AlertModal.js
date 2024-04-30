@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
   okButton: {
     backgroundColor: COLOR.PRIMARY,
     paddingHorizontal: 50,
-
+    height: 48,
+    justifyContent: 'center',
     borderRadius: 5,
     marginTop: 10,
   },
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 18,
     margin: 10,
   },
 });

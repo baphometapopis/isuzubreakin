@@ -77,26 +77,36 @@ export const DashboardScreen = () => {
           <Image
             style={{height: 25, width: 25, margin: 10}}
             source={DrawerIcon}
+            accessible={true}
+            accessibilityLabel="Open Drawer"
           />
         </TouchableOpacity>
         <View style={styles.profileContainer}>
           <TouchableOpacity
             // onPress={() => navigation.navigate('AddTextToImage')}
             style={styles.nameContainer}>
-            <Text style={styles.initialsText}>{Initials}</Text>
+            <Text
+              style={styles.initialsText}
+              accessibilityLabel="User Initials">
+              {Initials}
+            </Text>
           </TouchableOpacity>
           <View style={styles.userInfoContainer}>
-            <Text style={styles.userNameText}>
+            <Text
+              style={styles.userNameText}
+              accessibilityLabel="User Full Name">
               {loginData?.pos_login_data?.full_name}
             </Text>
-            <Text style={styles.userEmailText}>
+            <Text style={styles.userEmailText} accessibilityLabel="User Email">
               {loginData?.pos_login_data?.email}
             </Text>
           </View>
         </View>
         <View style={styles.phoneContainer}>
           <Image source={IconPhone} style={styles.phoneIcon} />
-          <Text style={styles.phoneNumberText}>
+          <Text
+            style={styles.phoneNumberText}
+            accessibilityLabel="User Phone Number">
             {loginData?.pos_login_data?.mobile_no}
           </Text>
         </View>
@@ -120,11 +130,18 @@ export const DashboardScreen = () => {
           <TouchableOpacity
             activeOpacity={1}
             onPress={() => navigation.navigate('NewInspection')}
-            style={[styles.optionCard, {flexBasis: '45%'}]}>
-            <View style={styles.badge}>
-              <Text style={styles.badgefont}>{proposalCounter?.Pending}</Text>
-            </View>
-            <Image style={styles.images} source={NewInspection} />
+            style={[styles.optionCard, {flexBasis: '45%'}]}
+            accessibilityLabel="New Inspection Button">
+            {proposalCounter?.Pending && (
+              <View style={styles.badge}>
+                <Text style={styles.badgefont}>{proposalCounter?.Pending}</Text>
+              </View>
+            )}
+            <Image
+              style={styles.images}
+              source={NewInspection}
+              accessibilityLabel="New Inspection Image"
+            />
             <Text style={{color: COLOR.TEXT_COLOR}}>New Inspection</Text>
           </TouchableOpacity>
 
@@ -132,22 +149,40 @@ export const DashboardScreen = () => {
           <TouchableOpacity
             activeOpacity={1}
             onPress={() => navigation.navigate('progressInspection')}
-            style={[styles.optionCard, {flexBasis: '45%'}]}>
-            <View style={styles.badge}>
-              <Text style={styles.badgefont}>{proposalCounter?.inprocess}</Text>
-            </View>
-            <Image style={styles.images} source={Inprogress} />
+            style={[styles.optionCard, {flexBasis: '45%'}]}
+            accessibilityLabel="In Progress Button">
+            {proposalCounter?.inprocess && (
+              <View style={styles.badge}>
+                <Text style={styles.badgefont}>
+                  {proposalCounter?.inprocess}
+                </Text>
+              </View>
+            )}
+            <Image
+              style={styles.images}
+              source={Inprogress}
+              accessibilityLabel="In Progress Image"
+            />
             <Text style={{color: COLOR.TEXT_COLOR}}>InProgress</Text>
           </TouchableOpacity>
 
           {/* Third Card */}
           <TouchableOpacity
             style={[styles.optionCard, {flexBasis: '45%'}]}
-            onPress={() => navigation.navigate('ReferBackScreen')}>
-            <View style={styles.badge}>
-              <Text style={styles.badgefont}>{proposalCounter?.referback}</Text>
-            </View>
-            <Image style={styles.images} source={ReferBAck} />
+            onPress={() => navigation.navigate('ReferBackScreen')}
+            accessibilityLabel="Refer Back Button">
+            {proposalCounter?.referback && (
+              <View style={styles.badge}>
+                <Text style={styles.badgefont}>
+                  {proposalCounter?.referback}
+                </Text>
+              </View>
+            )}
+            <Image
+              style={styles.images}
+              source={ReferBAck}
+              accessibilityLabel="Refer Back Image"
+            />
             <Text style={{color: COLOR.TEXT_COLOR}}>Refer Back</Text>
           </TouchableOpacity>
 
@@ -155,11 +190,20 @@ export const DashboardScreen = () => {
           <TouchableOpacity
             activeOpacity={1}
             onPress={() => navigation.navigate('RejectedInspection')}
-            style={[styles.optionCard, {flexBasis: '45%'}]}>
-            <View style={styles.badge}>
-              <Text style={styles.badgefont}>{proposalCounter?.rejected}</Text>
-            </View>
-            <Image style={styles.images} source={Rejected} />
+            style={[styles.optionCard, {flexBasis: '45%'}]}
+            accessibilityLabel="Rejected Button">
+            {proposalCounter?.rejected && (
+              <View style={styles.badge}>
+                <Text style={styles.badgefont}>
+                  {proposalCounter?.rejected}
+                </Text>
+              </View>
+            )}
+            <Image
+              style={styles.images}
+              source={Rejected}
+              accessibilityLabel="Rejected Image"
+            />
             <Text style={{color: COLOR.TEXT_COLOR}}>Rejected</Text>
           </TouchableOpacity>
         </View>
@@ -171,6 +215,7 @@ export const DashboardScreen = () => {
               resizeMode: 'center',
             }}
             source={Info1}
+            accessibilityLabel="Information Image"
           />
         </View>
       </View>

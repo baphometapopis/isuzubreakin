@@ -1,14 +1,23 @@
-import React, {createContext, useState} from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
-// Create the context
 const LoadingContext = createContext();
 
-// Create a provider for components to consume and update the loading state
 export const LoadingProvider = ({children}) => {
   const [loading, setLoading] = useState(false);
 
   const enableLoader = () => setLoading(true);
   const disableLoader = () => setLoading(false);
+
+  useEffect(() => {
+    let timer;
+    if (loading) {
+      // Set a timer to disable the loader after 1 minute and 30 seconds (90 seconds)
+      timer = setTimeout(() => {
+        setLoading(false);
+      }, 90000); // 90 seconds in milliseconds
+    }
+    return () => clearTimeout(timer); // Clear the timer when the component unmounts or loading state changes
+  }, [loading]);
 
   return (
     <LoadingContext.Provider value={{loading, enableLoader, disableLoader}}>

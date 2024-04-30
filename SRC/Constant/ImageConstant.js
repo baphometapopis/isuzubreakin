@@ -8,6 +8,8 @@ import Closedeye from '../Assets/Icons/closedeye.png';
 import MenuIcon from '../Assets/Icons/iconMenu.png';
 import Reset from '../Assets/Icons/iconReset.png';
 import Edit from '../Assets/Icons/iconEdit.png';
+import IconClose1 from '../Assets/Icons/closeIcon.png';
+
 import IconCustomerCare from '../Assets/Icons/iconscustomerCare.png';
 
 import Search from '../Assets/Icons/iconSearch.png';
@@ -63,6 +65,7 @@ import Logout from '../Assets/Icons/drawerIcons/logout.png';
 import Magma from '../Assets/IC_Logo/Magma1.png';
 
 export {
+  IconClose1,
   RejectedIcon,
   PlaceholderImage,
   SampleImage,

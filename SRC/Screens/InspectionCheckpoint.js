@@ -122,7 +122,10 @@ const InspectionCheckpoint = prop => {
     }
     setIsLoading(false);
     setFailedArray(failedSubmissionsArray);
-    setRequestDone(true);
+    console.log(failedSubmissionsArray, 'failed Submission array');
+    if (failedSubmissionsArray.length === 0) {
+      setRequestDone(true);
+    }
   }
 
   const handleOptionChange = (selectedValue, questionId) => {
@@ -167,6 +170,7 @@ const InspectionCheckpoint = prop => {
     submittedQuestions,
     totalQuestions,
     currentQuestion,
+    FailedArray,
     unansweredQuestions,
   ]);
 
@@ -197,6 +201,7 @@ const InspectionCheckpoint = prop => {
               valuekey="breakin_inspection_post_question_id"
             />
           </View>
+
           {/* {true ? ( */}
           {isRequestDone && FailedArray.length === 0 ? (
             <TouchableOpacity

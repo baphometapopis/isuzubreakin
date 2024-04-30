@@ -136,6 +136,7 @@ export const CustomDrawerContent = ({navigation, state}) => {
           />
           <Text style={[styles.menuText]}>In Progress</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() => navigateToScreen('ReferBackScreen')}>
@@ -145,6 +146,7 @@ export const CustomDrawerContent = ({navigation, state}) => {
           />
           <Text style={[styles.menuText]}>Refer Back</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() => navigateToScreen('RejectedInspection')}>
@@ -237,9 +239,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   menuItem: {
+    marginVertical: 2,
     paddingVertical: 10,
+    height: 48,
     // borderBottomWidth: 1,
     // borderBottomColor: '#ccc',
+    // backgroundColor: 'red',
     flexDirection: 'row',
   },
   menuText: {

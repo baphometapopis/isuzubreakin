@@ -70,10 +70,6 @@ export const LoginScreen = () => {
     setShowPassword(!showPassword);
   };
 
-  // useEffect(() => {
-  //   clearAll();
-  // }, []);
-
   const [keyboardStatus, setKeyboardStatus] = useState(false);
 
   useEffect(() => {
@@ -95,13 +91,13 @@ export const LoginScreen = () => {
       keyboardDidHideListener.remove();
     };
   }, []);
+
   const autoLogin = async () => {
     setLoading(true);
 
     try {
       const storedUser = await getData('loggedInUser');
       if (storedUser) {
-        // handleLogin(storedUser); // Try to log in with stored data
         navigation.reset({
           index: 0,
           routes: [{name: 'Dashboard', params: {data: 'response'}}],
@@ -148,22 +144,27 @@ export const LoginScreen = () => {
                     alignSelf: 'center',
                     marginTop: 80,
                   }}
+                  accessible={true}
+                  accessibilityLabel="Company Logo"
                 />
-                <Text style={[styles.Text, {color: 'blue'}]}>
-                  Global India Insurance Pvt .Ltd
+                <Text
+                  style={[styles.Text, {color: 'blue'}, styles.accessibleText]}
+                  accessible={true}
+                  accessibilityLabel="Global India Insurance Pvt Ltd">
+                  Global India Insurance Pvt Ltd
                 </Text>
               </View>
             )}
             <Text
-              style={{
-                fontSize: 22,
-                alignSelf: 'center',
-                color: COLOR.TEXT_COLOR,
-              }}>
+              style={[styles.TitleText, styles.accessibleText]}
+              accessible={true}
+              accessibilityLabel="App Title">
               MY Breakin Manager
             </Text>
-            <Text style={styles.TitleText}>Login</Text>
-            <Text style={styles.Text}>
+            <Text
+              style={[styles.Text, styles.accessibleText]}
+              accessible={true}
+              accessibilityLabel="Login Instruction">
               Use Your Credentials to access Your account
             </Text>
 
@@ -172,7 +173,12 @@ export const LoginScreen = () => {
                 styles.textInputContainer,
                 touched.username && errors.username && styles.errorBorder,
               ]}>
-              <Image source={UserIcon} style={{height: 30, width: 30}} />
+              <Image
+                source={UserIcon}
+                style={{height: 30, width: 30}}
+                accessible={true}
+                accessibilityLabel="Username Icon"
+              />
               <TextInput
                 style={styles.textInput}
                 value={values.username}
@@ -180,6 +186,8 @@ export const LoginScreen = () => {
                 onBlur={handleBlur('username')}
                 placeholder="Username*"
                 placeholderTextColor={COLOR.PLACEHOLDER}
+                accessible={true}
+                accessibilityLabel="Username Input"
               />
             </View>
             {touched.username && errors.username && (
@@ -191,7 +199,12 @@ export const LoginScreen = () => {
                 styles.textInputContainer,
                 touched.password && errors.password && styles.errorBorder,
               ]}>
-              <Image source={LockIcon} style={{height: 30, width: 30}} />
+              <Image
+                source={LockIcon}
+                style={{height: 30, width: 30}}
+                accessible={true}
+                accessibilityLabel="Password Icon"
+              />
               <TextInput
                 style={styles.textInput}
                 value={values.password}
@@ -200,12 +213,24 @@ export const LoginScreen = () => {
                 placeholder="Password*"
                 secureTextEntry={showPassword}
                 placeholderTextColor={COLOR.PLACEHOLDER}
+                accessible={true}
+                accessibilityLabel="Password Input"
               />
               <TouchableOpacity onPress={toggleEye}>
                 {showPassword ? (
-                  <Image source={Closedeye} style={{height: 20, width: 20}} />
+                  <Image
+                    source={Closedeye}
+                    style={{height: 20, width: 20}}
+                    accessible={true}
+                    accessibilityLabel="Hide Password Icon"
+                  />
                 ) : (
-                  <Image source={Openeye} style={{height: 20, width: 20}} />
+                  <Image
+                    source={Openeye}
+                    style={{height: 20, width: 20}}
+                    accessible={true}
+                    accessibilityLabel="Show Password Icon"
+                  />
                 )}
               </TouchableOpacity>
             </View>
@@ -213,27 +238,20 @@ export const LoginScreen = () => {
               <Text style={styles.errorText}>{errors.password}</Text>
             )}
 
-            {/* <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Sample');
-              }}>
-              <Text style={styles.forgotPassword}>Forgot Password ?</Text>
-            </TouchableOpacity> */}
-
-            <TouchableOpacity onPress={handleSubmit} style={styles.loginButton}>
+            <TouchableOpacity
+              onPress={handleSubmit}
+              style={styles.loginButton}
+              accessible={true}
+              accessibilityLabel="Login Button">
               <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>
           </View>
         )}
       </Formik>
       <Text
-        style={{
-          backgroundColor: COLOR.PRIMARY,
-          width: '100%',
-          textAlign: 'center',
-          color: 'white',
-          padding: 4,
-        }}>
+        style={[styles.footerText, styles.accessibleText]}
+        accessible={true}
+        accessibilityLabel="Copyright Info">
         Copyright@2024 Indicosmic Infotech Ltd
       </Text>
     </View>
@@ -309,5 +327,15 @@ const styles = StyleSheet.create({
   },
   errorBorder: {
     borderColor: 'red',
+  },
+  footerText: {
+    backgroundColor: COLOR.PRIMARY,
+    width: '100%',
+    textAlign: 'center',
+    color: 'white',
+    padding: 4,
+  },
+  accessibleText: {
+    // Add styles for accessibility text if necessary
   },
 });

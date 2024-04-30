@@ -5,16 +5,17 @@ import {
   TouchableOpacity,
   View,
   TextInput,
+  Image,
 } from 'react-native';
 import {COLOR} from '../Constant/color';
 import CustomAlert from '../Component/Modal/AlertModal';
-import {FlatList} from 'react-native-gesture-handler';
-import {Image} from 'react-native-animatable';
+import {FlatList} from 'react-native';
 import {fetchProgressInspectionApi} from '../Api/fetchProgressInspection';
 import {useNavigation} from '@react-navigation/native';
 import {url} from '../Api/ApiEndpoint';
 import CustomLoader from '../Component/Modal/Loader';
 import {getData} from '../Utils/localStorageData';
+import {IconClose1} from '../Constant/ImageConstant';
 
 export const ProgressInspectionScreen = () => {
   const [isErrorVisible, setisErrorVisible] = useState(false);
@@ -78,6 +79,10 @@ export const ProgressInspectionScreen = () => {
     }
   }, [filteredProposal, searchQuery]);
 
+  const clearSearch = () => {
+    setSearchQuery('');
+  };
+
   return (
     <View style={styles.container}>
       <CustomLoader visible={isLoading} />
@@ -87,21 +92,35 @@ export const ProgressInspectionScreen = () => {
         onClose={toggleErrorAlert}
       />
 
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Search Vehicle No ,Proposal No"
-        onChangeText={text => setSearchQuery(text)}
-        value={searchQuery}
-        placeholderTextColor="#6d6d6d"
-      />
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search Vehicle No ,Proposal No"
+          onChangeText={text => setSearchQuery(text)}
+          value={searchQuery}
+          placeholderTextColor="#6d6d6d"
+          accessibilityLabel="Search Input"
+        />
+        {searchQuery !== '' && (
+          <TouchableOpacity
+            style={styles.clearButton}
+            onPress={clearSearch}
+            accessibilityLabel="Clear Search">
+            <Image style={{height: 22, width: 22}} source={IconClose1} />
+          </TouchableOpacity>
+        )}
+      </View>
 
       {noRecordsFound && (
-        <Text style={styles.noRecordsText}>No Records Found</Text>
+        <Text style={styles.noRecordsText} accessibilityLabel="No Record Found">
+          No Records Found
+        </Text>
       )}
 
       <FlatList
         data={filteredProposal}
         keyExtractor={(item, index) => index.toString()}
+        accessibilityLabel="Proposal List"
         renderItem={({item}) => (
           <TouchableOpacity
             activeOpacity={1}
@@ -152,13 +171,31 @@ const styles = StyleSheet.create({
     shadowRadius: 3.05,
     elevation: 4,
   },
-  searchInput: {
-    color: 'black',
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: 'white',
-    height: 40,
     borderRadius: 8,
-    paddingHorizontal: 16,
     margin: 12,
+    borderWidth: 1,
+    borderColor: '#6d6d6d', // Border color added
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.17,
+    shadowRadius: 3.05,
+    elevation: 4,
+  },
+  searchInput: {
+    flex: 1,
+    height: 48,
+    paddingHorizontal: 16,
+    color: 'black',
+  },
+  clearButton: {
+    padding: 8,
   },
   noRecordsText: {
     alignSelf: 'center',
